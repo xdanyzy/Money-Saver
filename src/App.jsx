@@ -1,4 +1,4 @@
-import './tailwind.css'
+import './Tailwind.css'
 import First from "./components/First";
 import Main from "./components/Main";
 
