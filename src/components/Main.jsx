@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 
+import Info from "./Info";
+
 export default function Main(){
 
     let [balance, balanceChange] = useState(Number(0));
     // for main theme
     let [theme, setTheme] = useState("default");
+    let [hover, setHover] = useState(false);
 
     useEffect(() => {
 
@@ -13,6 +16,7 @@ export default function Main(){
         if (balance != 0){
             localStorage.setItem("money", balance);
         }
+
     }, [balance, theme]);
 
     return (
@@ -43,11 +47,17 @@ export default function Main(){
                     ><span className="flex justify-center text-black">+</span></button>
                     <input type="text" id="txtfield" className="w-60 h-10 bg-slate-400 rounded-md px-3 "/>
                 </div>
+            </div>
 
-                {/* edit this code */}
-                <div className="text-slate-700 text-center text-sm">
-                    <i>tips : <br /> use negative to charge your money such : -10<br />Dont use float or cent bc it will be error</i>
+            <div>
+                <div 
+                    className="absolute top-3 left-3 bg-slate-400 w-8 h-8 rounded-full flex justify-center items-center cursor-pointer" 
+                    onMouseEnter={() => setHover(true)}
+                    onMouseLeave={() => setHover(false)}
+                >
+                    <span>i</span>
                 </div>
+                { hover ? (<Info />) : null }
             </div>
         </div>
     )
